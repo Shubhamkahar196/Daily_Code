@@ -4,6 +4,7 @@ About Me
 
 I am Shubham kahar, a participant in Cohort 3.0, where I am learning Web + dev and Blockchain.
 
+
 Repository Structure
 
 This repository is organized into folders, each containing code for a specific assignment or project.
@@ -11,7 +12,7 @@ This repository is organized into folders, each containing code for a specific a
 Current Projects
 
 - https://github.com/Shubhamkahar196/Daily_Code/blob/main/Web%20%2B%20devops/JavaScript/Assignment_solution.js: Solutions to JavaScript assignments
-- (link unavailable): A replica of the VS Code landing page built using HTML, CSS, and JavaScript
+- https://github.com/Shubhamkahar196/Daily_Code/tree/main/Web%20%2B%20devops/HTML/week1-website : A replica of the VS Code landing page built using HTML, CSS, and JavaScript
 
 Contributions
 
