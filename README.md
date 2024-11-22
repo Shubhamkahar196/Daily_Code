@@ -10,7 +10,7 @@ This repository is organized into folders, each containing code for a specific a
 
 Current Projects
 
-- (link unavailable): Solutions to JavaScript assignments
+- https://github.com/Shubhamkahar196/Daily_Code/blob/main/Web%20%2B%20devops/JavaScript/Assignment_solution.js: Solutions to JavaScript assignments
 - (link unavailable): A replica of the VS Code landing page built using HTML, CSS, and JavaScript
 
 Contributions
