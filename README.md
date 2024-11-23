@@ -9,10 +9,10 @@ Repository Structure
 
 This repository is organized into folders, each containing code for a specific assignment or project.
 
-Current Projects
+-Web 3 & BlockChain
+- Web 
 
-- https://github.com/Shubhamkahar196/Daily_Code/blob/main/Web%20%2B%20devops/JavaScript/Assignment_solution.js: Solutions to JavaScript assignments
-- https://github.com/Shubhamkahar196/Daily_Code/tree/main/Web%20%2B%20devops/HTML/week1-website : A replica of the VS Code landing page built using HTML, CSS, and JavaScript
+
 
 Contributions
 
