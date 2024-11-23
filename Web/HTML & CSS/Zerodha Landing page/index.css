@@ -1,0 +1,22 @@
+*{
+    padding: 5px;
+    margin: 5px;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.btn{
+    background-color: blue;
+    color: white;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 1.2em;
+    padding: 10px 30px;
+    
+}
