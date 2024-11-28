@@ -1,0 +1,9 @@
+setTimeout(function(){
+    console.log("Like");
+    setTimeout(function(){
+        console.log("follow");
+        setTimeout(function(){
+            console.log("Share");
+        },5000);
+    },3000);
+},2000); 
