@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Simple</title>
+</head>
+<body>
+     <h1>Todo List</h1>
+     <div id="todo-list">
+        <div id="todo-1">
+            <h4 >1. Take class</h4>
+            <button onclick="deleteTodo(1)">Delete</button>
+        </div>
+        
+        <div id="todo-2">
+            <h4>2. Take a nap</h4>
+            <button onclick="deleteTodo(2)" >Delete</button>
+        </div>
+       
+  
+     </div>
+      
+      <div >
+        <input type="text" id="todo-text">
+        <button onclick="addTodo()">Add Todo</button>
+      </div>
+</body>
+<script>
+    // function addTodo(){
+    //     const todoInput = document.getElementById('todo-text');
+    //     const todoList = document.getElementById('todo-list');
+    //     const newTodo = document.createElement('h4');
+    //     newTodo.innerHTML = todoInput.value;
+    //     todoList.appendChild(newTodo);
+    //     todoInput.value =''; // clear the input field
+    // }
+
+    function addTodo(){
+        const inputEl = document.getElementById("todo-text");
+    const textNode = document.createElement("div");
+    textNode.innerHTML = inputEl.value;
+    const parentEl = document.getElementById("todo-list");
+    parentEl.appendChild(textNode);
+
+  }
+    
+    // updating
+    const updating = document.querySelectorAll('h4')[1];
+    updating.innerHTML = "nknernfi";
+
+    function deleteTodo(index){
+        const del = document.getElementById("todo-" + index);
+        document.getElementById("todo-list").removeChild(del);
+        
+    }
+</script>
+</html>
+
+
+
+
+
+ 
