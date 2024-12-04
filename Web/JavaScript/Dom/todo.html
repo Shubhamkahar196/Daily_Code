@@ -4,32 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
+    <link rel="stylesheet" href="todo.css">
 </head>
 <body>
-    <input type="text" name="" id="">
-    <button onclick="addTodo()">Add todo!</button>
+    <!-- <center class="head">
+        <h1>Todo App</h1>
+        <h3>Add important task</h3>
+    </center>
+     <br><br>
+    <center class="cen">
+        <input type="text" name=""  placeholder="add task">
+        <button onclick="addTodo()">Add todo!</button>
+    </center> -->
 
-    <script>
+    <center>
+        <div class="container">
+            <h1>Todo App</h1>
+            <h3>Add important task</h3>
+            <input type="text" id="task-input" placeholder="Enter task">
+            <button id="add-btn">Add Task</button>
+            <div id="task-list"></div>
+        </div>
+    
+    </center>
+   
 
-        let ctr = 1;
-        function addTodo(){
-            const inputEl = document.querySelector("input");
-            const value = inputEl.value;
-
-            const newDivEl = document.createElement("div");
-            newDivEl.setAttribute("id",ctr);
-           
-            newDivEl.innerHTML = `div ${value} <div><button onclick="deleteTodo(${ctr})">Delete</button></div>`;
-            
-
-            document.querySelector("body").appendChild(newDivEl);
-            ctr++;
-        }
-        function deleteTodo(index){
-            const element = document.getElementById(index);
-            element.parentNode.removeChild(element);
-           
-        }
-    </script>
+   <script src="todo.js"></script>
 </body>
 </html>
