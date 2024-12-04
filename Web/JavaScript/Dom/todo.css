@@ -19,39 +19,6 @@ body {
     }
 }
 
-/* .head{
-  font-size: 30px; 
-  font-family: 'Times New Roman', Times, serif;    
-}
-
-input[type="text"] {
-    width: 80%;
-    height: 40px;
-    margin: 10px;
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-button {
-    width: 20%;
-    height: 40px;
-    margin: 10px;
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    background-color: #2ecc71;
-    color: #fff;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #27ae60;
-} */
-
 
 .container {
     width: 400px;

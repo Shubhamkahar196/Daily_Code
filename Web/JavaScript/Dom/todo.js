@@ -1,23 +1,4 @@
 
-// let ctr = 1;
-// function addTodo(){
-//     const inputEl = document.querySelector("input");
-//     const value = inputEl.value;
-
-//     const newDivEl = document.createElement("div");
-//     newDivEl.setAttribute("id",ctr);
-   
-//     newDivEl.innerHTML = `div ${value} <div><button onclick="deleteTodo(${ctr})">Delete</button></div>`;
-    
-
-//     document.querySelector("body").appendChild(newDivEl);
-//     ctr++;
-// }
-// function deleteTodo(index){
-//     const element = document.getElementById(index);
-//     element.parentNode.removeChild(element);
-   
-// }
 
 let tasks = [];
 
