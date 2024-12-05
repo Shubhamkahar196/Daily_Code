@@ -10,7 +10,7 @@ body{
     display: flex;
     justify-content: center;
     gap: 30px;
-    background-color: white !important;
+    background-color: #ffffff !important;
 }
 
 .design{

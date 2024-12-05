@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Advance </title>
+</head>
+<body>
+    <div id="root"></div>
+    <div>
+      <input type="text"></input>
+      <button onclick="addTodo()">Add Todo</button>
+    </div>
+    <script>
+      let ctr = 2;
+      let todos = [{
+        id: 1,
+        title: "Go to gym"
+      }, {
+        id: 2,
+        title: "Clean the car"
+      }]
+  
+      function addTodo() {
+        todos.push({
+          id: ctr,
+          title: document.querySelector("input").value
+        })
+        render(todos);
+      }
+  
+      function render(todos) {
+        const todoList = document.getElementById('root');
+        todoList.innerHTML = ''; // Clear the list
+  
+        todos.forEach(todo => {
+          const div = document.createElement('div');
+          const h1 = document.createElement('h4');
+          h1.textContent = todo.title;
+          div.appendChild(h1);
+          div.setAttribute('data-id', todo.id);
+          todoList.appendChild(div);
+        });
+      }
+      render(todos)
+    </script>
+  </body>
+</html>
