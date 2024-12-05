@@ -1,0 +1,25 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+   
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background-color: white !important;
+}
+
+.design{
+    border-radius: 10px;
+    border: 2px solid blue; 
+}
+
+
+
+button{
+    font-size: large;
+}
