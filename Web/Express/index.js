@@ -63,13 +63,6 @@ app.post("/",function(req,res){
 });
 
 
-// app.put("/",(req,res)=>{
-//    for(let i =0; i<user[0].kidneys.length;i++){
-//      user[0].kidneys[i].healthy = true;
-//    }
-//    res.json({});
-//  })
-
 app.put("/", (req, res) => {
    const allHealthy = user[0].kidneys.every(kidney => kidney.healthy);
    if (allHealthy) {
@@ -80,9 +73,6 @@ app.put("/", (req, res) => {
    }
  })
  
-
-
-
 
 app.delete("/", (req, res) => {
    const unhealthyKidneys = user[0].kidneys.filter(kidney => !kidney.healthy);
@@ -96,11 +86,5 @@ app.delete("/", (req, res) => {
    }
  })
  
- 
- 
- 
- 
-
-
 app.listen(3000);
 
