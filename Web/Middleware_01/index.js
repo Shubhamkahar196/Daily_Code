@@ -1,28 +1,49 @@
 const express = require("express");
+
 const app = express();
+//logs the method,timestamp and the url
 
-let requestCount = 0;
+function loggerMiddleware(req,res,next){
+    console.log("Method is" + req.method);
+    console.log("Method is " + req.url);
+    console.log(new Date());
+    next();
+}
 
-app.get("/sum",(req,res)=>{
-       requestCount = requestCount + 1;
-       console.log("Total number of requests = "+ requestCount);
-       console.log(`Total number of requests =  ${requestCount}`);
-    const a =  parseInt(req.query.a);
+app.use(loggerMiddleware);
+
+app.get("/sum", function(req, res) {
+    const a = parseInt(req.query.a);
     const b = parseInt(req.query.b);
 
     res.json({
-        ans : a +b
-    });
-})
+        ans: a + b
+    })
+});
 
-app.get("/mul",(req,res)=>{
-    requestCount = requestCount + 1;
-    console.log("Total number of requests = "+ requestCount);
-    console.log(`Total number of requests =  ${requestCount}`);
- const a =  parseInt(req.query.a);
- const b = parseInt(req.query.b);
-})
+app.get("/multiply", function(req, res) {
+    const a = req.query.a;
+    const b = req.query.b;
+    res.json({
+        ans: a * b
+    })
+});
 
-app.listen(3000,()=>{
-    console.log("Server is running on port 3000");
-})
+app.get("/divide", function(req, res) {
+    const a = req.query.a;
+    const b = req.query.b;
+    res.json({
+        ans: a / b
+    })
+
+});
+
+app.get("/subtract", function(req, res) {
+    const a = parseInt(req.query.a);
+    const b = parseInt(req.query.b);
+    res.json({
+        ans: a - b
+    })
+});
+
+app.listen(3000);
