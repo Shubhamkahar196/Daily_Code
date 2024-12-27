@@ -1,5 +1,5 @@
 const express = require("express");
-const jwt = require('jsonwebtoke');
+const jwt = require('jsonwebtoken');
 const JWT_SECRET = "randomShubhamLove"; 
 const app = express();
 
@@ -62,22 +62,51 @@ app.post("/signin", (req, res) => {
     
 });
 
+function auth(req,res,next){
+    const token = req.headers.authorization;
 
-app.get("/me", function(req,res){
-    const token = req.headers.token;
-    const decodeInformation = jwt.verify(token, JWT_SECRET); //{username:"shubhamkahar134@gmail.com"}
-    const username = decodeInformation.username;
-    const user = users.find(u => u.token=== token);
-
-    if(user){
-        res.send({
-            username: user.username
+    if(token){
+        jwt.verify(token, JWT_SECRET,() =>{
+            if(err){
+                res.status(401).send({
+                    message: "unauthorized"
+                })
+            }else{
+                req.user = decoded;
+                next();
+            }
         })
     }else{
         res.status(401).send({
-            message: "Unauthorized"
+            message: "sjbfjsjb"
         })
     }
+}
+
+
+// app.get("/me", function(req,res){
+//     const token = req.headers.token;
+//     const decodeInformation = jwt.verify(token, JWT_SECRET); //{username:"shubhamkahar134@gmail.com"}
+//     const username = decodeInformation.username;
+//     const user = users.find(u => u.token=== token);
+
+//     if(user){
+//         res.send({
+//             username: user.username
+//         })
+//     }else{
+//         res.status(401).send({
+//             message: "Unauthorized"
+//         })
+//     }
+// })
+
+app.get("/me", auth,(req,res)=>{
+    const user = req.user;
+
+    res.send({
+        username: user.username
+    })
 })
 
 app.listen(3000, () => {
