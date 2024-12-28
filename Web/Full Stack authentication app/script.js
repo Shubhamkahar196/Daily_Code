@@ -1,12 +1,20 @@
 const express = require("express");
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = "randomShubham";
+const cors = require("cors")
 const app = express();
 
 app.use(express.json());   
-app.use(express.static("./public")) 
+app.use(cors());
+// app.use(express.static("./public")) 
+
+
 
 const users = [];
+
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "./public/index.html");
+});
 
 app.post("/signup",(req,res)=>{
     const username  = req.body.username;
@@ -29,7 +37,7 @@ app.post("/signup",(req,res)=>{
     console.log(users);
 })
 
-app.post("signin",(req,res)=>{
+app.post("/signin",(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
 
@@ -39,22 +47,21 @@ app.post("signin",(req,res)=>{
         }else{
             return false;
         }
-
-        if(foundUser){
-            const token = jwt.sigin({
-             username: username
-            },JWT_SECRET); // convert their username over to a jwt
-            foundUser.token = token;
-            res.send({
-                token: token
-            })
-            console.log(users);
-        }else{
-            res.status(403).send({
-                message: "Invalid username or password"
-            })
-        }
     })
+    if(foundUser){
+        const token = jwt.sign({
+         username: username
+        },JWT_SECRET); // convert their username over to a jwt
+        foundUser.token = token;
+        res.send({
+            token: token
+        })
+        console.log(users);
+    }else{
+        res.status(403).send({
+            message: "Invalid username or password"
+        })
+    }
 });
 
 function auth(req,res,next){

@@ -10,8 +10,8 @@ async function signup(){
 }
 
 async function signin(){
-    const username = document.getElementById("sigin-username").value;
-    const password = document.getElementById("sigin-password").value;
+    const username = document.getElementById("signin-username").value;
+    const password = document.getElementById("signin-password").value;
 
 
     const response = await axios.post("http://localhost:3000/signin",{
@@ -21,6 +21,7 @@ async function signin(){
 
     localStorage.setItem("token",response.data.token);
     alert("signed in successfully");
+    getUserInformation();
 }
 
 async function logout(){
