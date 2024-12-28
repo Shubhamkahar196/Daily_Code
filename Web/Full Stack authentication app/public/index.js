@@ -22,3 +22,20 @@ async function signin(){
     localStorage.setItem("token",response.data.token);
     alert("signed in successfully");
 }
+
+async function logout(){
+    localStorage.removeItem("token");
+}
+
+async function getUserInformation(){
+    const token = localStorage.getItem("token");
+
+    if(token){
+        const response = await axios.get("http://localhost:3000/me",{
+            headers: {
+                Authorization: token
+            }
+        });
+        document.getElementById("information").innerHTML = response.data.username;
+    }
+}
