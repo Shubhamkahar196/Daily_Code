@@ -8,31 +8,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
 </head>
 <body>
+    <center>
     <section class="sec">
-
-    
+     
     <div class="up">
-       <h2 class="h2"> signup </h2> 
+       <h2 class="h2"> Signup </h2> 
         <input type="text" name="username" placeholder="username" id="signup-username" class="input">
         <input type="text" name="password" placeholder="Password" id="signup-password" class="input">
-        <button onclick="signup()">submit</button>
+        <button onclick="signup()" >submit</button>
     </div>
 
     <div class="in">
         <h2 class="h2"> Signin </h2> 
         <input type="text" name="username" placeholder="username" id="signin-username" class="input">
         <input type="text" name="password" placeholder="Password" id="signin-password" class="input">
-        <button onclick="signin()">submit</button>
+        <button onclick="signin()" >submit</button >
     </div>
+ 
+     <!-- <div class="info">
+        <h2 class="h2"> User Information </h2>
+        <div id="information" class="info-box"></div>
+     </div> -->
 
-     <div>
-        User Information
-        <div id="information"></div>
+     <div class="logout">
+        <button onclick="logout()" >Logout</button>
      </div>
-     <div>
-        <button onclick="logout()">Logout</button>
-     </div>
+   
     </section> 
+</center>
   <script src="index.js"></script>
 </body>
 </html>

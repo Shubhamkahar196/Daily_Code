@@ -13,8 +13,9 @@ body {
     flex-direction: column;
     margin: 30px;
     padding: 25px;
+    max-width: 400px;
     gap: 10px;
-    background-color: #864444; /* added white background color */
+    background-color: #445286; /* added white background color */
     box-shadow: 0 0 10px rgba(171, 150, 150, 0.1); /* added box shadow */
     border-radius: 10px; /* added border radius */
   }
@@ -63,4 +64,22 @@ body {
   button:hover {
     background-color: #3e8e41; /* added hover background color */
   }
+
+  .logout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
+  .info{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  } 
+
+   .info-box{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }

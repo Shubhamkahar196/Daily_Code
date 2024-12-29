@@ -26,6 +26,8 @@ async function signin(){
 
 async function logout(){
     localStorage.removeItem("token");
+    alert("You are logged out");
+    window.location.reload();
 }
 
 async function getUserInformation(){
@@ -37,6 +39,18 @@ async function getUserInformation(){
                 Authorization: token
             }
         });
-        document.getElementById("information").innerHTML = response.data.username;
+        // document.getElementById("information").innerHTML = response.data.username;
+    //    const userInfo = document.getElementById("information");
+    //     userInfo.innerHTML = `
+    //    <p>Username: ${response.data.username}</p>`;
+
+    const userInfo = document.getElementById("information");
+    userInfo.innerHTML = `
+      <div class="info-box">
+        <h2>User Information</h2>
+        <p>Username: ${response.data.username}</p>
+      </div>
+    `;
+
     }
 }
