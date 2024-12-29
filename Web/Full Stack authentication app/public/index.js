@@ -9,20 +9,33 @@ async function signup(){
     alert("sign up successfully");
 }
 
+
 async function signin(){
     const username = document.getElementById("signin-username").value;
     const password = document.getElementById("signin-password").value;
-
-
-    const response = await axios.post("http://localhost:3000/signin",{
-        username: username,
-        password: password
+    const response = await axios.post("http://localhost:3000/signin",{ 
+      username: username, 
+      password: password 
     });
-
     localStorage.setItem("token",response.data.token);
     alert("signed in successfully");
     getUserInformation();
-}
+  }
+  
+  async function getUserInformation(){
+    const token = localStorage.getItem("token");
+    if(token){
+      const response = await axios.get("http://localhost:3000/me",{ 
+        headers: { 
+          Authorization: token 
+        } 
+      });
+      document.getElementById("information").innerHTML = response.data.username;
+    }
+  }
+  
+
+  
 
 async function logout(){
     localStorage.removeItem("token");
@@ -30,27 +43,7 @@ async function logout(){
     window.location.reload();
 }
 
-async function getUserInformation(){
-    const token = localStorage.getItem("token");
 
-    if(token){
-        const response = await axios.get("http://localhost:3000/me",{
-            headers: {
-                Authorization: token
-            }
-        });
-        // document.getElementById("information").innerHTML = response.data.username;
-    //    const userInfo = document.getElementById("information");
-    //     userInfo.innerHTML = `
-    //    <p>Username: ${response.data.username}</p>`;
 
-    const userInfo = document.getElementById("information");
-    userInfo.innerHTML = `
-      <div class="info-box">
-        <h2>User Information</h2>
-        <p>Username: ${response.data.username}</p>
-      </div>
-    `;
 
-    }
-}
+  
