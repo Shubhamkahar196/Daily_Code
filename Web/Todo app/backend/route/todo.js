@@ -40,5 +40,32 @@ export async function updateTodo(req,res,next){
 
     
 export async function deleteTodoById(req,res,next){
+    const { id } = req.params;
 
+    const todoIndex = todos.findIndex(todo => todo.id == id);
+    if(todoIndex != -1){
+        todos.splice(todoIndex,1);
+        res.status(200).json({
+            message: "Todo delete succesfully"
+        })
+    }else{
+        res.status(404).json({
+            message: "Todo item not found"
+        })
+    }
+
+}
+
+export async function searchTodo(req,res,next){
+     const { q } = req.query;
+     if(!q) {
+        return res.status(400).json({
+            message: "Query parameters are missing"
+        })
+     }
+
+     const filterTodo = todos.filter(todo =>
+        todo.task.toLowerCase().includes(q.toLowerCase())
+     );
+     res.json(filterTodo);
 }
