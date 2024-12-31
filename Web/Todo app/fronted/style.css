@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+    background-color: aqua;
+    
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 25px 30px;
+    margin: 15px 25px;
+    border: none;
+    border-radius: 10px ;
+    box-shadow: 0 0 10px 0.1px rgba(99, 216, 49, 0.5);
+    background-color: blue;
+}  
