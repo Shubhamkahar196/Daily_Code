@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-import { getAllTodo,createTodo,updateTodo,deleteTodoById,searchTodo } from "./route/todo.js";
+import express from 'express';
+import cors from 'cors';
+import { getAllTodo,createTodo,updateTodo,deleteTodoById,searchTodo } from './routes/todo.js';
 const app = express();
 const PORT = 3000;
 
