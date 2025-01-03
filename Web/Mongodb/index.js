@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const JWT_SECRET = "shubham@123";
 
-mongoose.connect("mongodb+srv://yt727883:wTg5f7j1Ju3y0iQN@cluster0.1tsxm.mongodb.net/Todo-App-database");
+mongoose.connect("");// adding you uri
 const app = express();
 app.use(express.json());
 
