@@ -24,11 +24,11 @@ app.post("/signup", async function(req,res){
     })
 });
 
-app.post("signin",async function(req,res){
+app.post("/signin",async function(req,res){
    const email = req.body.email;
    const password = req.body.password;
 
-   const user = UserModel.findOne({
+   const user = await UserModel.findOne({
     email:email,
     password: password
    })
@@ -38,7 +38,7 @@ app.post("signin",async function(req,res){
    if(user){
     const token = jwt.sign({
     id: user._id
-    });
+    },JWT_SECRET);
     res.json({
         token: token
     });
