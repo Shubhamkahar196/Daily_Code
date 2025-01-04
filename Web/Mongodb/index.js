@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const JWT_SECRET = "shubham@123";
 
-mongoose.connect("");// adding you uri
+mongoose.connect("mongodb+srv://yt727883:wTg5f7j1Ju3y0iQN@cluster0.1tsxm.mongodb.net/Todo-App-database");// adding you uri
 const app = express();
 app.use(express.json());
 
@@ -49,14 +49,38 @@ app.post("/signin",async function(req,res){
    }
 });
 
-app.post("/todo",(req,res)=>{
+app.post("/todo",auth, function(req,res){
+ const userId = req.userId;
+
+ res.json({
+    userId : userId
+ })
 
 });
 
-app.get("/todos",(req,res)=>{
+app.get("/todos",auth, function(req,res){
+  const userId = req.userId;
+    
+  res.json({
+    userId : userId
+  })
 
 });
 
+function auth(req,res,next){
+    const token = req.headers .token;
+
+    const decodeData = jwt.verify(token,JWT_SECRET);
+
+    if(decodeData){
+        req.userId = decodeData.userId;
+        next();
+    }else{
+        res.status(403).json({
+            message: "Incorrect credentials"
+        })
+    }
+}
 app.listen(3000,()=>{
     console.log("Server is running on port 3000");
 })
