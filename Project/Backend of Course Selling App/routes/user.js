@@ -1,8 +1,8 @@
-
-
-function createUserRoutes(app){
+const { Router} = require("express");
+     
+const userRouter = Router();
     
-    app.post("/user/signup", function(req,res){
+userRouter.post("/signup", function(req,res){
         const email = req.body.email;
         const password = req.body.password;
         const name = req.body.name;
@@ -12,7 +12,7 @@ function createUserRoutes(app){
         })
     });
     
-    app.post("/user/signin",function(req,res){
+userRouter.post("/signin",function(req,res){
              const email = req.params.email;
              const password = req.params.password;
     
@@ -21,15 +21,15 @@ function createUserRoutes(app){
              })
     });
     
-    app.post("/user/purchases",function(req,res){
+userRouter.get("/purchases",function(req,res){
         res.json({
             message: "user purchase endpoint"
         })
     });
 
-}
 
 
-module.exports ={
-    createUserRoutes: createUserRoutes
+
+module.exports = {
+    userRouter: userRouter
 }
