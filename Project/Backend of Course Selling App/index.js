@@ -1,46 +1,21 @@
 const express = require("express");
+
+const { createUserRoutes} = require("./routes/user");
+const {createCourseRoutes} = require("./routes/course");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "shubham12";
 const mongoose = require("mongoose");
-
+const course = require("./routes/course");
+const app = express();
 
 app.use(express());
 
 
-app.post("/user/signup", function(req,res){
-    const email = req.body.email;
-    const password = req.body.password;
-    const name = req.body.name;
+app.use("/user",userRouter);
+app.use("/course",courseRouter);
 
-    res.status(200).json({
-        message: "You are successfully signup"
-    })
-});
-
-app.post("/user/signin",function(req,res){
-         const email = req.params.email;
-         const password = req.params.password;
-
-         res.status(200).json({
-            message: "You are logged in"
-         })
-});
-
-
-app.post("/user/purchases",function(req,res){
-
-});
-
-app.post("/courses/purchase",function(req,res){
-
-});
-
-app.get("/courses", function(req,res){
-
-});
-
-
-
+createUserRoutes(app);
+createCourseRoutes(app);
 
 app.listen(3000,()=>{
     console.log("Server is running on port 3000");
