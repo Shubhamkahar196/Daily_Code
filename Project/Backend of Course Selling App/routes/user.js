@@ -1,12 +1,26 @@
 const { Router} = require("express");
-     
+const { userModel} = require("../db");
 const userRouter = Router();
+
     
-userRouter.post("/signup", function(req,res){
-        const email = req.body.email;
-        const password = req.body.password;
-        const name = req.body.name;
-    
+userRouter.post("/signup", async function(req,res){
+    // const { email, password, FirstName, LastName } = req.body; // adding zod validation
+    const email = req.body.email;
+    const password = req.body.password;
+    const FirstName = req.body.FirstName;
+    const LastName = req.body.LastName;
+    //hash the password  tp plaintext pw is not stored in the DB by bcrypt
+       
+    // todo : put inside a try catch block
+        await  userModel.create({
+            email : email,
+            password : password,
+            FirstName : FirstName,
+            LastName : LastName
+           })
+   
+   
+
         res.status(200).json({
             message: "You are successfully signup"
         })

@@ -5,9 +5,7 @@ const { adminModel } = require("../db");
 
 
 adminRouter.post("/singup", function(req,res){
-    const email = req.body.email;
-    const password = req.body.password;
-    const name = req.body.name;
+
     res.json({
         message: "admin signup"
     })
