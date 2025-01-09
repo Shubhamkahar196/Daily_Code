@@ -15,7 +15,11 @@ app.use("/api/v1/user",userRouter);
 app.use("/api/v1/admin",adminRouter);
 app.use("/api/v1/course",courseRouter);
 
-await mongoose.connect("");
-app.listen(3000,()=>{
-    console.log("Server is running on port 3000");
-})
+async function main(){
+    await mongoose.connect("mongodb+srv://yt727883:wTg5f7j1Ju3y0iQN@cluster0.1tsxm.mongodb.net/course-app");
+    app.listen(3000,()=>{
+        console.log("Server is running on port 3000");
+    })
+}
+
+main()
