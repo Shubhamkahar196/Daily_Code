@@ -74,11 +74,9 @@ userRouter.post("/signup", async function(req,res){
 
     
 userRouter.post("/signin", async function(req,res){
-             const email = req.params.email;
-             const password = req.params.password;
-    
-             res.status(200).json({
-                message: "You are logged in"
+             const { email , password } = req.body;
+             res.json({
+                message : "You are logged in "
              })
     });
     
