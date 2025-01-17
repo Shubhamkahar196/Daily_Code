@@ -11,8 +11,8 @@ const userSchema = new Schema({
       
     email : {type: String, unique: true},
     password : String,
-    FirstName : String,
-    LastName : String,
+    firstName : String,
+    lastName : String,
 
 });
 

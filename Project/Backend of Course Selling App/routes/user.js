@@ -6,7 +6,7 @@ const userRouter = Router();
 
 
 const jwt = require("jsonwebtoken");
-const JWT_USER_PASSWORD = "aashvba";
+const  { JWT_USER_PASSWORD }= require("../config");
 const bcrypt = require("bcrypt");
 const z = require("zod");
 
@@ -37,7 +37,7 @@ userRouter.post("/signup", async function (req, res) {
 
 
     // Extract validated email, password, firstName, and lastName from the request body
-    const { email, password, FirstName, LastName } = req.body;
+    const { email, password, firstName, lastName } = req.body;
 
     // Hash the user's password using bcrypt with a salt rounds of 5
     const hashedPassword = await bcrypt.hash(password, 5);
@@ -50,10 +50,10 @@ userRouter.post("/signup", async function (req, res) {
 
 
         await userModel.create({
-            email,
+            email : email,
             password: hashedPassword,
-            FirstName,
-            LastName,
+            firstName: firstName,
+            lastName :  lastName,
         });
     } catch (e) {
         // If there is an error during user creation, return a error message

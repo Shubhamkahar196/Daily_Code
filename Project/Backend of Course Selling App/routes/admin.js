@@ -1,10 +1,11 @@
 const { Router } = require("express");
 const adminRouter = Router();
-const { adminModel } = require("../db");
+const { adminModel, courseModel } = require("../db");
 const jwt = require("jsonwebtoken");
-const JWT_ADMIN_PASSWORD = "1234@@";
+const { JWT_ADMIN_PASSWORD } = require("../config");
 const bcrypt = require("bcrypt");
 const z = require("zod");
+const { adminMiddleware } = require("../middleware/admin");
 
 
 
@@ -14,9 +15,9 @@ adminRouter.post("/singup", async function (req, res) {
 
     const requireBody = z.object({
         email: z.string().email().min(5),
-        password: z.string().min(4).max(10),
-        firstName: z.string().min(3).max(10),
-        lastName: z.string().min(3).max(10)
+        password: z.string().min(4).max(15),
+        firstName: z.string().min(3).max(15),
+        lastName: z.string().min(3).max(15)
     });
 
 
@@ -81,7 +82,7 @@ adminRouter.post("/signin", async function (req, res) {
     if (!parseDataWithSuccess) {
         return res.json({
             message: "Incorrect data format",
-            error: parseDataWithSuccess.error
+            error: parseDataWithSuccess.error,
         })
     }
 
@@ -112,6 +113,11 @@ adminRouter.post("/signin", async function (req, res) {
         const token = jwt.sign({
             id: admin._id
         }, JWT_ADMIN_PASSWORD);
+
+        //send the generated token back to client
+        res.json({
+            token: token,
+        });
     } else {
         // If the password does not match, send an error message to the client
         res.status(403).json({
@@ -124,10 +130,50 @@ adminRouter.post("/signin", async function (req, res) {
     })
 })
 
-adminRouter.post("/", function (req, res) {
-    res.json({
-        message: "admin create course"
-    })
+adminRouter.post("/course",adminMiddleware, async function (req, res) {
+     // Get the adminId from the request object
+      const adminId = req.adminId;
+
+
+      //validate the requres body data using zod schema
+      const requireBody = z.object({
+        title: z.string().min(3),
+        description:z.string().min(10),
+        imageUrl: z.string().url(),
+        price: z.number().positive(),
+      });
+
+      // parse and validate the request body data
+      
+      const parseDataWithSuccess = requireBody.safeParse(req.body);
+
+      //if data format is incorrect send an error message to the client
+      if(!parseDataWithSuccess){
+        return res.json({
+            message: "Incorrect data format",
+            error: parseDataWithSuccess.error,
+        });
+      }
+
+            // Get title, description, imageURL, price from the request body
+      const { title, description, imageUrl, price } = req.body;
+      
+          // Create a new course with the given title, description, imageURL, price, creatorId
+      const course = await courseModel.create({
+        title:title,
+        description:description,
+        imageUrl:imageUrl,
+        price:price,
+        creatorId:adminId,
+      });
+
+         // Respond with a success message if the course is created successfully
+         res.status(201).json({
+            message: "Course Created",
+            courseId: course._id,
+         });
+  
+    
 })
 
 
