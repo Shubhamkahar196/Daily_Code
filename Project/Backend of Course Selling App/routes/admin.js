@@ -177,7 +177,20 @@ adminRouter.post("/course",adminMiddleware, async function (req, res) {
 })
 
 
-adminRouter.put("/bulk", function (req, res) {
+adminRouter.put("/course",adminMiddleware, async function (req, res) {
+    // Get the adminId from the request object, set by the admin middleware
+    
+    const adminId = req.userId;
+
+    //define a schema using zod to validate the request body for updating a course
+
+    const requireBody = z.object({
+        courseId: z.string().min(5),  // ensure course ID is at least 5 characters
+        title: z.string().min(3).optional(),  // title is optional
+        description: z.string().min(5).optional() // description is optional
+        imageUrl: z.string().url().min(5).optional(), // image url is option
+    })
+
     res.json({
         message: "admin update course"
     })
