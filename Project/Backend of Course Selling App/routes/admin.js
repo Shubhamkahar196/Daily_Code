@@ -187,14 +187,56 @@ adminRouter.put("/course",adminMiddleware, async function (req, res) {
     const requireBody = z.object({
         courseId: z.string().min(5),  // ensure course ID is at least 5 characters
         title: z.string().min(3).optional(),  // title is optional
-        description: z.string().min(5).optional() // description is optional
+        description: z.string().min(5).optional(), // description is optional
         imageUrl: z.string().url().min(5).optional(), // image url is option
     })
+     
+    //parse and validate the incoming request body against the schema
+    const parseDataWithSuccess = requireBody.safeParse(req.body);
 
-    res.json({
-        message: "admin update course"
+    // if validation fails respond with an error message and the details of the error
+
+    if(!parseDataWithSuccess){
+        return res.json({
+            message: "Incorrect data format",
+            error: parseDataWithSuccess.error,
+        });
+    }
+
+     // extract the validate fields from the body
+     const { title, description,imageUrl,price,courseId} = req.body;
+
+     //find the course in the database using adminId and courseID
+
+     const course = await courseModel.findOne({
+        _id: courseId,  // match the course by ID
+        creatorId: adminId // ensure the admin is the creator
+     });
+
+     // if the course is not found respond with an error message
+     if(!course){
+        return res.status(404).json({
+            message: "Course not found"
+        });
+     }
+
+     // update the course details in the database using the object
+
+     await courseModel.updateOne({
+        _id: courseId,
+        creatorId: adminId
+     },{
+        // it uses the provided courseId and adminId to identify the course. for each
+        title: title || course.title,
+        description: description || course.description,
+        imageUrl: imageUrl || course.imageUrl,
+        price: price || course.price,
+     });
+
+    res.status(200).json({
+        message: "Course updated !"
     })
-})
+});
 
 adminRouter.get("/course", function (req, res) {
     res.json({
