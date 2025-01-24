@@ -1,3 +1,7 @@
+// Import the dotenv module to load environment variables from the .env file
+require('dotenv').config()   
+
+
 const express = require("express");
 const { userRouter} = require("./routes/user");
 const {courseRouter} = require("./routes/course");
@@ -17,7 +21,7 @@ app.use("/api/v1/admin",adminRouter);
 app.use("/api/v1/course",courseRouter);
 
 async function main(){
-    await mongoose.connect("mongodb+srv://yt727883:wTg5f7j1Ju3y0iQN@cluster0.1tsxm.mongodb.net/course-app"); //
+    await mongoose.connect(process.env.MONGO_URL); //
     app.listen(3000,()=>{
         console.log("Server is running on port 3000");
     })

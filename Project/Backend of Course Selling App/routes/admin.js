@@ -236,7 +236,7 @@ adminRouter.put("/course",adminMiddleware, async function (req, res) {
     res.status(200).json({
         message: "Course updated !"
     })
-});
+}); 
 
 adminRouter.get("/course", function (req, res) {
     res.json({
