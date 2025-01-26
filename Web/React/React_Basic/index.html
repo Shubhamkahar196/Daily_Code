@@ -6,16 +6,19 @@
     <title>React Basic</title>
 </head>
 <body>
-    <script>
-        function onButtonPress(){
-            const currentValue = document.getElementById("btn").innerHTML;
-            console.log(currentValue.split(" "))
-            const currentCounter = currentValue.split(" ")[1];
-            const newCounter = parseInt(currentCounter) +1;
-            document.getElementById("btn").innerHTML = "Counter" + newCounter;
-        }
-    </script>
+    
 
     <button onclick="onButtonPress()" id="btn">Counter 0</button>
 </body>
+<script>
+  let counter = 0;
+
+const updateCounter = () => {
+  counter++;
+  document.getElementById("btn").innerHTML = `Counter ${counter}`;
+};
+
+document.getElementById("btn").addEventListener("click", updateCounter);
+
+</script>
 </html>
