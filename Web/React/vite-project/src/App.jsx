@@ -2,11 +2,16 @@
 import { useState , useEffect} from 'react';
 import './App.css'
 
+//conditional rendering - kabhi kabhi render kr wana hai kabhi nhi like if-else
 function App() {
- 
+ let counterVisible = true;
 
   return  <div>
-         <Counter></Counter>
+    hii
+        
+
+         {counterVisible && <Counter></Counter>}
+         hello
        </div>
  
 }
@@ -25,7 +30,7 @@ function Counter(){
         setCount(count => count + 1);
       },1000)
       console.log("mounted");
- }, []);
+ }, []);  // dependency array, cleanup, fetch inside useEffect
 
 
 //  setInterval(function(){
