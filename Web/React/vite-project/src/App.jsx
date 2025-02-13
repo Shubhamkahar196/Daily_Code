@@ -4,16 +4,13 @@ import './App.css'
 
 //conditional rendering - kabhi kabhi render kr wana hai kabhi nhi like if-else
 function App() {
- let counterVisible = true;
+ let counterVisible , setCounterVisible = useState(true);
 
   return  <div>
     hii
-        
-
          {counterVisible && <Counter></Counter>}
          hello
        </div>
- 
 }
 
 
