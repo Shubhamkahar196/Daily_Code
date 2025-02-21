@@ -13,12 +13,15 @@ function App() {
 
           <div>
             <PostComponent></PostComponent>
+            <br />
           </div>
           <div>
             <PostComponent></PostComponent>
+            <br />
           </div>
           <div>
             <PostComponent></PostComponent>
+            <br />
           </div>
         </div>
       
