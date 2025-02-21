@@ -8,14 +8,29 @@ function App() {
   return (
       
       <div style={{background: "#dfe6e9", height: "100vh"}}> 
-      <PostComponent></PostComponent>
+      <div style={{display: "flex", justifyContent: "center"}}>
+        <div>
+
+          <div>
+            <PostComponent></PostComponent>
+          </div>
+          <div>
+            <PostComponent></PostComponent>
+          </div>
+          <div>
+            <PostComponent></PostComponent>
+          </div>
+        </div>
+      
+      </div>
+      
       
       </div> 
     
   )
 }
 
-const style = { width:200, backgroundColor: "white", borderRadius: 10, borderColor: "gray", borderWidth: 1, display: "flex"}
+const style = { width:200, backgroundColor: "black", borderRadius: 10, borderColor: "gray", borderWidth: 1, padding: 20}
 
 function PostComponent() {
   return  <div style={style}>
