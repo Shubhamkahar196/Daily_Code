@@ -1,0 +1,16 @@
+nav, ul{
+    display: flex;
+}
+
+li{
+    list-style-type: none;
+}
+
+ul{
+    gap: 34px;
+}
+
+nav{
+    background-color: grey;
+    padding: 5px;
+}
