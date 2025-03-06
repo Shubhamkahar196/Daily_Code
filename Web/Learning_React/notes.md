@@ -17,4 +17,9 @@ Debugging and maintainance is easy
 
 # state 
 - A variable that stores a value. 
-- In this case, count is a state variable that stores a number.
+- In this case, count is a state variable that stores a number.  
+
+# useEffect
+- its a hook that runs a function after something changes.
+- it's like a "listener" that waits for something to happen.
+- When that the things happen, it runs the function.
