@@ -37,3 +37,9 @@ Debugging and maintainance is easy
 
 # Lists and Keys
  - When rendering lists each item should have a unique key prop for react to track changes efficently.
+
+ # Class based vs Functional Component
+- Earlier, React code was written using Class based components. 
+- Slowly functional components were introduced and today they are the ones you’ll se everywhere.
+- Class components are  classes that extend React.
+- Component, while functional components are simpler and can use Hooks.
