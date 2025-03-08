@@ -31,3 +31,9 @@ Debugging and maintainance is easy
 
 1. **Persistent Across Renders**: The value stored in `useRef` persists between component re-renders. This means the value of a `ref` does not get reset when the component re-renders, unlike regular variables.
 2. **No Re-Renders on Change**: Changing the value of a `ref` (`ref.current`) does **not** cause a component to re-render. This is different from state (`useState`), which triggers a re-render when updated.
+
+# children
+- The children prop allows you to pass elements or components as props to other elements.
+
+# Lists and Keys
+ - When rendering lists each item should have a unique key prop for react to track changes efficently
