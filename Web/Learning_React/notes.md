@@ -104,3 +104,16 @@ const App = () => {
         </ErrorBoundary>
     );
 };
+
+# Fragment
+- In React, a component can return a single parent element, but it can contain multiple children within that single parent.
+- <> this sign is fragment and to avoid extra div
+
+const MyComponent = () => {
+    return ( 
+        <>  
+            <h1>Hello</h1>
+            <p>World</p>
+        </>
+    );
+};
