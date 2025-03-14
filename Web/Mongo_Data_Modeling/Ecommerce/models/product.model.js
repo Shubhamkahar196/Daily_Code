@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-//scheam
+//schema
 
 const productSchema = new mongoose.Schema({
  description:{
@@ -12,7 +12,24 @@ const productSchema = new mongoose.Schema({
     required:true,
  },
  productImage:{
-    
+  type:String
+ },
+ price: {
+   type:Number,
+   default: 0,
+ },
+ stock: {
+   type: Number,
+   default: 0
+ },
+ category:{
+   type: mongoose.Schema.Types.ObjectId,
+   ref: "Category",
+   required: true,
+ },
+ owner:{
+   type: mongoose.Schema.Types.ObjectId,
+   ref:'User'
  }
 },{timestamps: true})
 
