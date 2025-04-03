@@ -5,6 +5,13 @@ import './App.css'
 
 function App() {
   return <div>
+   <a href='/'>Allen</a>  
+   | 
+   <a href='/neet/online-coaching-class-11'a>Class 11 </a>  
+
+   |
+    <a href="/">Class 12</a> 
+
     <BrowserRouter>
     <Routes>
       <Route path='/neet/online-coaching-class-11' element={<Class11Program/>}> </Route>
