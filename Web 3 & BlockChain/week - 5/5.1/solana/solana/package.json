@@ -1,5 +1,5 @@
 {
-  "name": "solana-wallet-adapter-client-side-solana",
+  "name": "solana",
   "private": true,
   "version": "0.0.0",
   "type": "module",
