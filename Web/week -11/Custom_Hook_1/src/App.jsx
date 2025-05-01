@@ -9,10 +9,11 @@ function useCounter() {
     setCounter(counter + 1);
   }
 
-  return { counter, increaseCount };   // return
+  return { counter: counter,
+     increaseCount: increaseCount };   // return
 }
 
-const App = () => {
+function App () {
   const { counter, increaseCount } = useCounter();
 
   return (
