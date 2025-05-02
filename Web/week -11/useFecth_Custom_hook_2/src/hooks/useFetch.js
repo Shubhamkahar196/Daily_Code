@@ -1,5 +1,7 @@
 import { useEffect ,useState} from "react";
 
+
+// custom hooks 
 export function usePostTitle(){
     const [post, setPost] = useState({});
 
@@ -14,4 +16,25 @@ export function usePostTitle(){
     },[])
 
     return post.title;
+}
+
+// it a generic custom hook its take url(what you passed in url) and give some data 
+export function useFetch(url){
+  const[finalData, setFinalData] = useState({});
+
+
+  async function getDetails(){
+   const response = await fetch(url);
+   const json = await response.json();
+   setFinalData(json)
+  }
+
+  useEffect(()=>{
+    getDetails();
+  }, [])
+
+
+  return {
+    finalData
+  }
 }
