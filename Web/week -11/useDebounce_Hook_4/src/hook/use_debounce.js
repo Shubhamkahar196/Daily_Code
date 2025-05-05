@@ -1,18 +1,12 @@
-import React from 'react'
+
 
 
 // useDeounee= > The useDebounce hook in React is a useful tool for delaying the execution of a function or API call 
 // until a certain amount of time has passed since the last input or event.
 //  This can help improve performance and prevent excessive API calls or computations.
 
-const use_debounce = () => {
-  return (
-    <div>use_debounce</div>
-  )
-}
 
-export default use_debounce
-
+// node.js for backend how useDebounce work
 let curretnClock;
 
 function searchBackend(){
