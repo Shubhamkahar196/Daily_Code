@@ -1,12 +1,12 @@
-import React ,{useState} from 'react'
+import React ,{ useState } from 'react'
 
-const App = () => {
+const ContextApi = () => {
+
   return (
-    <div>
-      <Counter/>
-    </div>
+    <div><Counter/></div>
   )
 }
+
 function Counter(){
     const [count,setCount] = useState(0);
     return <div>
@@ -38,4 +38,4 @@ function Decrease({setCount}){
     </div>
 }
 
-export default App
+export default ContextApi
