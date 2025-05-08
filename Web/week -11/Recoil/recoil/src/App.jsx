@@ -1,41 +1,26 @@
 import React ,{useState} from 'react'
-
+import ContextApi from './ContextApi';
+import {RecoilRoot} from 'recoil';
 const App = () => {
   return (
-    <div>
-      <Counter/>
-    </div>
+
+    // this is context api 
+    // <div>
+      
+    //   <ContextApi/>
+    // </div>
+
+
+    // atom 
+    //  an "atom" is a small, reusable building block of UI, 
+// like an icon or input field, used to create more complex components and consistent design systems
+
+   
+    <RecoilRoot>
+     <ContextApi/>
+    </RecoilRoot>
   )
 }
-function Counter(){
-    const [count,setCount] = useState(0);
-    return <div>
-        {count}
-        <Increase setCount={setCount}/>
-        <Decrease setCount={setCount}/>
-    </div>
-}
 
-function Increase({setCount}){
-
-    function increase(){
-        setCount(c => c+1);
-    }
-  
-    return <div>
-        <button onClick={increase}>increase</button>
-    </div>
-}
-
-function Decrease({setCount}){
-
-    function decrease(){
-        setCount(c => c-1);
-    }
-   
-    return <div>
-        <button onClick={decrease}>Decrease</button>
-    </div>
-}
 
 export default App
