@@ -1,16 +1,19 @@
 import React  from 'react'
 import ContextApi from './ContextApi';
-import { RecoilRoot, atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import { counterAtom } from './Store/atoms/counter';
+
 
 const App = () => {
   return (
 
+    <div>
+      
+      {/*  this is contextAPi */}
+      <ContextApi/>
+      
+    </div>
 
 
-    <RecoilRoot>
-           <Counter/>
-       </RecoilRoot>
+   
    
    
   )
