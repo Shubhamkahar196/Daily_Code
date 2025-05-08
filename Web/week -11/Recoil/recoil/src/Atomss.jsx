@@ -1,20 +1,19 @@
-import React  from 'react'
-import ContextApi from './ContextApi';
+import React from 'react'
 import { RecoilRoot, atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { counterAtom } from './Store/atoms/counter';
 
-const App = () => {
+ // atom 
+    //  an "atom" is a small, reusable building block of UI, 
+// like an icon or input field, used to create more complex components and consistent design systems
+
+const Atomms = () => {
   return (
-
-
-
     <RecoilRoot>
-           <Counter/>
-       </RecoilRoot>
-   
-   
+        <Counter/>
+    </RecoilRoot>
   )
 }
+
 
 
 function Counter(){
@@ -56,4 +55,4 @@ function Decrease(){
     </div>
 }
 
-export default App
+export default Atomms
