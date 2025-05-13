@@ -1,5 +1,6 @@
-import React from 'react'
-
+import React from "react";
+import { useRecoilValue, useSetRecoilState, RecoilRoot } from "recoil";
+import { counterAtom, evenSelector } from "./Store/selector/counter";
 
 // selector
 // In Recoil, a selector is a function that:
@@ -16,11 +17,47 @@ import React from 'react'
 
 // Think of selectors as a way to create new, derived state that's based on existing atoms!
 
-
-const App = () => {
-  return (
-    <div>App</div>
-  )
+function App() {
+  return <>
+   <RecoilRoot>
+    <Button />
+    <Counter />
+    <IsEven />
+  </RecoilRoot>
+  </>
+ 
 }
 
-export default App
+function Button() {
+  // using counter atom
+  const setCount = useSetRecoilState(counterAtom);
+  function increase() {
+    setCount((c) => c + 2);
+  }
+
+  function decrease() {
+    setCount((c) => c - 1);
+  }
+
+  return (
+    <div>
+      <button onClick={increase}>Increase</button>
+      <button onClick={decrease}>decrease</button>
+    </div>
+  );
+}
+
+function Counter() {
+  const count = useRecoilValue(counterAtom);
+
+  return <div>{count}</div>;
+}
+
+function IsEven() {
+  //using selector
+  const even = useRecoilValue(evenSelector);
+  return <div>{even ? "Even" : " Odd"}</div>;
+}
+
+
+export default App;
