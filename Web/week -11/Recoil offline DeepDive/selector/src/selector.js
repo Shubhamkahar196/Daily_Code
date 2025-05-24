@@ -24,5 +24,7 @@ export const totalNotificationSelector = selector({
     key: "totalNotificationSelector",
     value: ({get}) =>{
         const networkAtom = get(networkAtom);
+        const jobsAtomCount = get(jobsAtom);
+        
     }
 })
