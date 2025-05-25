@@ -1,11 +1,11 @@
 import React from "react";
 
+// step -1
+const UserContext = React.createContext();
 
-// step - 1
-React.createContext = React.createContext()
 
+// step-2
+export default UserContext;
 
-// step -2 
-export defualt UserContext;
-
-//step - 3
+//step - 3 
+// defining UserContextProvider in seperate folder name as UserContextProvider.jsx

@@ -14,4 +14,4 @@ const UserContextProvider = ({Children}) =>{
     )
 }
 
-export defualt UserContextProvider
+export default UserContextProvider
