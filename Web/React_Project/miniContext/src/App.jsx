@@ -2,7 +2,10 @@ import React from 'react'
 
 const App = () => {
   return (
-    <div>App</div>
+    <UserContextProvider>
+        <div>Learning UseCOntext</div>
+    </UserContextProvider>
+  
   )
 }
 
