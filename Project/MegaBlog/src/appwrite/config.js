@@ -104,7 +104,19 @@ export class Service{
          }
    }
 
-   
+    //file upload method
+    async uploadFile(file){
+        try{
+         return await this.bucket.createFile(
+            conf.appwriteBucketId,
+            ID.unique(),
+            file
+         )
+        }catch(error){
+            throw error;
+            return false
+        }
+    }
 
 }
 
