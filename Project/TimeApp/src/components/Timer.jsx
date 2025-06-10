@@ -18,7 +18,7 @@ const Timer = () => {
         document.documentElement.style.setProperty('--progress', `${progress}%`);
     },[time,initialTime]);
 
-    //effect to handle timer countdown when it is running
+    effect to handle timer countdown when it is running
     
 
   return (
