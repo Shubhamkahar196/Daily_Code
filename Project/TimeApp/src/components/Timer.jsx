@@ -19,6 +19,7 @@ const Timer = () => {
         document.documentElement.style.setProperty('--progress', `${progress}%`);
     },[time,initialTime]);
 
+
     //effect to handle timer countdown when it is running
     useEffect(() =>{
       let interval = null;
@@ -33,6 +34,9 @@ const Timer = () => {
         if(interval) clearInterval(interval); // clear interval to prevent memory leaks
       }
     },[isRunning,time])
+    
+    
+// function to handle editing of time fields
 
   return (
     <div>Timer</div>
