@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import style from "./Timer.module.css"
 import { formatTime,calculateTime } from '../utils/auxiliaryFunction'
-import { preview } from 'vite';
+
 
 const Timer = () => {
  
@@ -38,10 +38,11 @@ const Timer = () => {
     
 // function to handle editing of time fields
 
-const handleEditField = (field){
+const handleEditField = (field)=>{
 
   if(editState.field === field){
     // edit is completed - save new value with padding and update time
+
     const newTime = {
       ...formatTime(time),
       [field]: editState.value.padStart(2,'0') // adding leading zeros if necessary
@@ -65,10 +66,76 @@ const handleEditField = (field){
   }
 };
 
+//handle input changes for editing time fields(allow only numbers)
+const handleInputChange = (e) =>{
+  const value = e.target.value.replace(/\D/g, '').slice(0,2); // allow only numbers, max 2 digits
+  setEditState((prevState) => ({...prevState, value})); // update only the value in editState
+};
+
+// foramt current time into hours , minutes and seconds for display
+const {hours,minutes, seconds} = formatTime(time);
+
 
   return (
-    <div>Timer</div>
-  )
+  
+    <div className={style.timerApp}>
+      
+
+
+      <div className={style.timerDisplay}>
+        <div className={style.timerCircle}>
+          <div className={style.timerTime}>
+            {editState.field === 'hours' ? (
+              <input
+                className={style.timeInput}
+                type="text"
+                value={editState.value}
+                onChange={handleInputChange}
+                onBlur={() => handleEditField('hours')}
+                autoFocus
+              />
+            ) : (
+              <span className={style.timeUnit} onClick={() => handleEditField('hours')}>{hours}</span>
+            )}
+            :
+            {editState.field === 'minutes' ? (
+              <input
+                className={style.timeInput}
+                type="text"
+                value={editState.value}
+                onChange={handleInputChange}
+                onBlur={() => handleEditField('minutes')}
+                autoFocus
+              />
+            ) : (
+              <span className={style.timeUnit} onClick={() => handleEditField('minutes')}>{minutes}</span>
+            )}
+            :
+            {editState.field === 'seconds' ? (
+              <input
+                className={style.timeInput}
+                type="text"
+                value={editState.value}
+                onChange={handleInputChange}
+                onBlur={() => handleEditField('seconds')}
+                autoFocus
+              />
+            ) : (
+              <span className={style.timeUnit} onClick={() => handleEditField('seconds')}>{seconds}</span>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className={style.actionButtons}>
+        <button className={style.actionButton} onClick={() => setIsRunning(!isRunning)}>
+          {isRunning ? 'Pause' : 'Start'} {/* Toggle between Start and Pause */}
+        </button>
+        <button className={style.actionButton} onClick={() => { setTime(0); setInitialTime(0); setIsRunning(false); }}>
+          Reset {/* Reset the timer */}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default Timer
