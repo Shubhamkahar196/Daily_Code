@@ -38,6 +38,34 @@ const Timer = () => {
     
 // function to handle editing of time fields
 
+const handleEditField = (field){
+
+  if(editState.field === field){
+    // edit is completed - save new value with padding and update time
+    const newTime = {
+      ...formatTime(time),
+      [field]: editState.value.padStart(2,'0') // adding leading zeros if necessary
+    };
+
+    //use the auxiliary funtion to calculate the total time in seconds
+
+    const calculateTIme = calculateTime(newTime.hours, newTime.minutes, newTime.seconds);
+
+    //update time and initial time with the new calculated value
+
+    setTime(calculateTIme);
+    setInitialTime(calculateTIme);
+
+    //reset editing state
+    setEditState({field: null, value: ''});
+  }else{
+    //start editing - remove leading zeros
+    setIsRunning(false); // pause the timer while editing
+    setEditState({field, value: formatTime(time)[field].replace(/^0+/, '')}); //set field and remove leading zeros for easier editing
+  }
+};
+
+
   return (
     <div>Timer</div>
   )
