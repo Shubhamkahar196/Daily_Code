@@ -24,11 +24,13 @@
 
 import React from 'react';
 import { Screen1 } from './components/Screen1';
+import { Screen2 } from './components/Screen2';
 
 // Main App component for design only
 function App() {
   return (
-   <Screen1/>
+  //  <Screen1/>
+   <Screen2/>
     
   );
 }

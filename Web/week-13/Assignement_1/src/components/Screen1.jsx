@@ -1,6 +1,6 @@
 import React from 'react';
+import { Screen2 } from './Screen2';
 
-// The Screen1 component provided by the user
 export const Screen1 = () => {
   return (
     // Main container for the page, centered with dark blue background
@@ -52,15 +52,16 @@ export const Screen1 = () => {
               className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               maxLength="4"
               inputMode="numeric"
-            //   disabled // Disable input as it's for design only
+            //   disabled 
             />
           </div>
 
           {/* Continue button */}
           <button
-            type="button" // Changed to type="button" as it's not submitting
+          
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
-            disabled // Disable button as it's for design only
+           
+            onClick={Screen2}
           >
             Continue
           </button>
