@@ -111,7 +111,7 @@ const Solution = () => {
                     <span className="text-xl font-bold text-blue-500">Webinar.gg</span>
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold ${isDarkTheme ? 'bg-gray-600 text-gray-200' : 'bg-gray-300'}`}>
                         
-                                                <img src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg?semt=ais_hybrid&w=740" alt="Shubham" className="w-10 h-10 rounded-full object-cover" />
+                     <img src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg?semt=ais_hybrid&w=740" alt="Shubham" className="w-10 h-10 rounded-full object-cover" />
                     </div>
                 </div>
 
