@@ -1,1 +1,2 @@
-export const DB_NAME = "SecureSharing"
+const DB_NAME = "SecureSharing";
+module.exports = DB_NAME;
