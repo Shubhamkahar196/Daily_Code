@@ -7,7 +7,7 @@ const Login = () => {
     email: '',
     password: '',
   });
-  const { login, loading, error, isAuthenticated, clearError } = useAuth();
+  const { login, loading, error, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,10 +15,6 @@ const Login = () => {
       navigate('/dashboard');
     }
   }, [isAuthenticated, navigate]);
-
-  useEffect(() => {
-    clearError();
-  }, [clearError]);
 
   const handleChange = (e) => {
     setFormData({
@@ -29,11 +25,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login form submitted');
     const result = await login(formData.email, formData.password);
-    console.log('Login result:', result);
     if (result.success) {
-      console.log('Login successful, navigating to dashboard');
       navigate('/dashboard');
     }
   };

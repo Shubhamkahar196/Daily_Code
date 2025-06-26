@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const bcrypt = require('bcryptjs');
 const File = require('../models/File');
 
 const getFileInfo = async (req, res) => {
@@ -65,7 +66,7 @@ const accessFile = async (req, res) => {
         return res.status(401).json({ message: 'Password required' });
       }
 
-      const isPasswordValid = await file.isPasswordCorrect(password);
+      const isPasswordValid = await bcrypt.compare(password, file.filePassword);
       if (!isPasswordValid) {
         return res.status(401).json({ message: 'Invalid password' });
       }

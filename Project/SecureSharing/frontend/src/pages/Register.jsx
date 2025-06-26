@@ -9,20 +9,14 @@ const Register = () => {
     confirmPassword: '',
   });
   const [passwordError, setPasswordError] = useState('');
-  const { register, loading, error, isAuthenticated, clearError } = useAuth();
+  const { register, loading, error, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
-  console.log('Register component mounted');
 
   useEffect(() => {
     if (isAuthenticated) {
       navigate('/dashboard');
     }
   }, [isAuthenticated, navigate]);
-
-  useEffect(() => {
-    clearError();
-  }, [clearError]);
 
   const handleChange = (e) => {
     setFormData({
@@ -48,11 +42,8 @@ const Register = () => {
       return;
     }
 
-    console.log('Register form submitted');
     const result = await register(formData.email, formData.password);
-    console.log('Register result:', result);
     if (result.success) {
-      console.log('Registration successful, navigating to dashboard');
       navigate('/dashboard');
     }
   };

@@ -1,20 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useState } from 'react';
 
 const Home = () => {
   const { isAuthenticated } = useAuth();
-  const [testResult, setTestResult] = useState('');
-
-  const testBackend = async () => {
-    try {
-      const response = await fetch('http://localhost:8000');
-      const data = await response.json();
-      setTestResult(`✅ Backend connected: ${data.message}`);
-    } catch (error) {
-      setTestResult(`❌ Backend error: ${error.message}`);
-    }
-  };
 
   return (
     <div className="home">
@@ -37,19 +25,7 @@ const Home = () => {
               </Link>
             </>
           )}
-          <button onClick={testBackend} className="btn btn-secondary">
-            Test Backend
-          </button>
-          <Link to="/debug" className="btn btn-secondary">
-            Debug Info
-          </Link>
         </div>
-
-        {testResult && (
-          <div style={{ marginTop: '1rem', padding: '1rem', background: '#f0f0f0', borderRadius: '4px' }}>
-            {testResult}
-          </div>
-        )}
       </div>
 
       <div className="features">
