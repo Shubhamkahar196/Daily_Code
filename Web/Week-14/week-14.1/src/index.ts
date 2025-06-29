@@ -34,7 +34,23 @@ function isLegal(age:number){
 
 console.log(isLegal(29))
 
+//fourth : Create a function that takes another function as input, and runs it after 1 second.
 
+
+function delayedCall(anotherFn: () => void){
+    setTimeout(anotherFn,1000);
+}
+
+
+function log(){
+    console.log("hi there");
+}
+delayedCall(log)
+
+
+
+const greet1 = (name: string) => `Hello, ${name}!`;
+console.log(greet1)
 
 // number , string , any
 //  any specail type of function in typeScript
