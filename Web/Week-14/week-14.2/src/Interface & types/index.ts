@@ -35,12 +35,12 @@ let user: User = {
   },
 };
 
-let user2: User = {
-    name: "skk",
-    age: 22,
+// let user2: User = {
+//     name: "skk",
+//     age: 22,
+//     address:  Address ,
     
-    
-}
+// }
 
 function isLegal(user: User): boolean{
     if(user.age>= 18){
