@@ -9,7 +9,7 @@ interface Address {
 }
 
 interface User {
-  name: String;
+  name: string;
   age: number;
 //   address?: {    // making it optional "?""
 //     city?: string;
