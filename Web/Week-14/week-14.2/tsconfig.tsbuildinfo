@@ -1,1 +1,1 @@
-{"root":["./src/basic.ts","./src/assignment/assignment.ts","./src/implementing_interfaces/index.ts","./src/implementing_interfaces/understanding_classes.ts","./src/interface_types/index.ts","./src/typess/basictype.ts"],"version":"5.8.3"}
+{"root":["./src/basic.ts","./src/array/arr.ts","./src/assignment/assignment.ts","./src/implementing_interfaces/index.ts","./src/implementing_interfaces/understanding_classes.ts","./src/interface_types/index.ts","./src/typess/basictype.ts"],"version":"5.8.3"}
