@@ -58,7 +58,7 @@ type BadUser = {
     ip: string;
 }
 
-type User4 = GoodUser | BadUser'
+type User4 = GoodUser | BadUser;
 
 const users: User4 ={
 name: "SHubham",
