@@ -46,3 +46,23 @@ let teamLead: TeamLead = {
 }
 
 
+// Union
+
+type GoodUser = {
+    name: string;
+    gift: string;
+}
+
+type BadUser = {
+    name: string;
+    ip: string;
+}
+
+type User4 = GoodUser | BadUser'
+
+const users: User4 ={
+name: "SHubham",
+ip: "asdasd",
+gift: "12324",
+}
+
