@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { UserModel, ContentModel, LinkModel } from "./db";
+import { JWT_PASSWORD } from "./config";
 
 const app = express();
 
@@ -57,10 +58,64 @@ app.post("/api/v1/signup", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/api/v1/signin", async (req:Request, res:Response) => {
-   const {username,password} = req.body;
-   UserModel.findOne(username) 
-});
+
+app.post("/api/v1/signin", async(req:Request, res:Response)=>{
+
+  try{
+
+    const requiredBody = z.object({
+      username:z.string().min(3).max(10),
+      password: z.string().min(3).max(13)
+    })
+
+
+    const parseDataSuccess = requiredBody.safeParse(req.body);
+    
+    if(!parseDataSuccess.success){
+      res.status(403).json({
+        message: "Incorrect format",
+        error: parseDataSuccess.error
+      })
+      return
+    }
+
+    const {username, password} = req.body;
+
+    const existingUser = await UserModel.findOne({
+      username: username,
+      // password: password
+    })
+
+    if(!existingUser || !existingUser.password){
+      res.status(403).json({
+        message: "Incorrect credentials",
+      })
+      return
+    }
+
+    const passwordMatch = await bcrypt.compare(password, existingUser.password);
+     
+    if(!passwordMatch){
+      res.status(403).json({
+        message: "Password is incorrect",
+      })
+      return
+    }
+
+    const token = jwt.sign({userId: existingUser._id}, JWT_PASSWORD,{expiresIn: '1h'})
+    res.status(200).json({
+      message: "Signed in successfully",
+      token
+    })
+  }catch(e){
+    console.error(e);
+    res.status(500).json({
+      message: "Internal server problem",
+    })
+    return
+  }
+})
+
 
 app.post("/api/v1/content", (req, res) => {});
 
