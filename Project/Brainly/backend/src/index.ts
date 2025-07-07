@@ -1,4 +1,4 @@
-import express from 'express';
+import express,{Request,Response} from 'express';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken'
 import { z } from 'zod'
@@ -10,10 +10,7 @@ const app = express();
 app.use(express.json());
 
 
-
-
-
-app.post("/api/v1/signup", async ( req,res) => {
+app.post("/api/v1/signup", async ( req:Request,res:Response) => {
   // Input validation using Zod
   const requiredBody = z.object({
     username: z.string().min(2, "Username is required"),
@@ -25,7 +22,7 @@ app.post("/api/v1/signup", async ( req,res) => {
 
   // If data is not correct
   if (!parseDataSuccess.success) {
-    return res.status(411).json({
+     return res.status(411).json({
       message: "Wrong credentials",
       error: parseDataSuccess.error,
     });

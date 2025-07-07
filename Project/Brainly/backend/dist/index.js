@@ -28,7 +28,7 @@ app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
     const parseDataSuccess = requiredBody.safeParse(req.body);
     // If data is not correct
     if (!parseDataSuccess.success) {
-        return res.status(411).json({
+        res.status(411).json({
             message: "Wrong credentials",
             error: parseDataSuccess.error,
         });
