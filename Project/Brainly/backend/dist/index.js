@@ -32,6 +32,7 @@ app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
             message: "Wrong credentials",
             error: parseDataSuccess.error,
         });
+        return;
     }
     // Extract validated username and password
     const { username, password } = req.body;
@@ -43,15 +44,17 @@ app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
             username,
             password: hashedPassword,
         });
-        return res.status(201).json({
+        res.status(201).json({
             message: "User created successfully",
         });
+        return;
     }
     catch (e) {
         console.error(e);
         return res.status(500).json({
             message: "Internal Server Error",
         });
+        return;
     }
 }));
 app.post("api/v1/signin");
