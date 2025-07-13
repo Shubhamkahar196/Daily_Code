@@ -1,5 +1,5 @@
-import { useState } from 'react'
 
+import { Button } from './components/ui/Button'
 import './App.css'
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
     <>
       <div className='bg-blue-800'>
        <h1>hii</h1>
+      {/* <Button variant="primary" size="md" onClick={ ()=>{}} text={asd} startIcon={} endIcon={} /> */}
         </div>
     </>
   )

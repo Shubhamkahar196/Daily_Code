@@ -1,9 +1,18 @@
-import React from 'react'
-
-const Button = () => {
-  return (
-    <div>Button</div>
-  )
+interface ButtonProps {
+  variant : "primary" | "secondary";
+  size: "sm" | "md" | "lg";
+  text: string;
+  startIcon?: string;
+  endIcon?: string;
+  onClick: ()=> void;
 }
 
-export default Button
+
+
+export const Button = (props: ButtonProps) =>{
+
+  return <button></button>
+
+
+}
+
