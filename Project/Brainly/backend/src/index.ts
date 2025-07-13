@@ -126,7 +126,11 @@ app.post("/api/v1/content", userMiddleware, async (req:Request, res:Response) =>
 
   
 try {
-    const { link, type, title } = req.body;
+    // const { link, type, title } = req.body;
+    const link = req.body.link;
+    const type = req.body.type;
+    const title = req.body.title;
+
     if (!link || !type || !title) {
        res.status(400).json({ message: "Please provide all required fields" });
        return
@@ -150,17 +154,49 @@ try {
 
 });
 
+// content get
+
+app.get("/api/v1/content",userMiddleware, async (req:Request, res:Response) => {
+  const userId = req.userId;
+  const content = await ContentModel.find({
+    userId: userId
+  }).populate("userId", "username")
+  res.json({
+    content
+  })
+});
+
+// content delete 
+
+app.delete("/api/v1/content",userMiddleware, async (req:Request, res:Response) => {
+  const contentId = req.body.contentId;
+
+  await ContentModel.deleteMany({
+    contentId,
+    userId: req.userId
+  })
+  res.json({
+    message: "Deleted"
+  })
+
+});
 
 
+app.post("/api/v1/brain/share",userMiddleware, async (req:Request, res:Response) => {
+       
+  // const share = req.body.share;
+  // if(share){
+  //   const existingLink = await LinkModel.findOne({
+  //     userId: req.userId
+  //   });
 
-
-
-
-app.get("/api/v1/content", (req, res) => {});
-
-app.delete("/api/v1/content", (req, res) => {});
-
-app.post("/api/v1/brain/share", (req, res) => {});
+  //   if(existingLink){
+  //     res.json({
+  //       hash.existingLink.hash
+  //     })
+  //   }
+  // }
+});
 
 app.get("/api/v1/brain/:shareLink", (req, res) => {});
 
