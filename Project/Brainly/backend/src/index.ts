@@ -1,14 +1,17 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response} from "express";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { UserModel, ContentModel, LinkModel } from "./db";
 import { JWT_PASSWORD } from "./config";
+import { userMiddleware } from "./Middleware";
 
 const app = express();
 
 app.use(express.json());
+
+//singup
 
 app.post("/api/v1/signup", async (req: Request, res: Response) => {
   // Input validation using Zod
@@ -59,6 +62,7 @@ app.post("/api/v1/signup", async (req: Request, res: Response) => {
 });
 
 
+// signin
 app.post("/api/v1/signin", async(req:Request, res:Response)=>{
 
   try{
@@ -117,7 +121,40 @@ app.post("/api/v1/signin", async(req:Request, res:Response)=>{
 })
 
 
-app.post("/api/v1/content", (req, res) => {});
+// // add content
+app.post("/api/v1/content", userMiddleware, async (req:Request, res:Response) => {
+
+  
+try {
+    const { link, type, title } = req.body;
+    if (!link || !type || !title) {
+       res.status(400).json({ message: "Please provide all required fields" });
+       return
+    }
+    console.log(req.userId);
+    await ContentModel.create({
+      link,
+      type,
+      title,
+        userId: new mongoose.Types.ObjectId(req.userId),
+        // userId: req.userId,
+      tags: []
+    });
+
+    res.status(201).json({ message: "Content added successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error adding content" });
+  }
+
+
+});
+
+
+
+
+
+
 
 app.get("/api/v1/content", (req, res) => {});
 

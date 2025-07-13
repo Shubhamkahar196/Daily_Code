@@ -1,1 +1,1 @@
-{"root":["./src/middleware.ts","./src/config.ts","./src/db.ts","./src/index.ts"],"version":"5.8.3"}
+{"root":["./src/middleware.ts","./src/config.ts","./src/db.ts","./src/index.ts","./src/override.d.ts"],"version":"5.8.3"}
