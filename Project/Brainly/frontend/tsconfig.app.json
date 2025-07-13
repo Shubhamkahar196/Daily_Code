@@ -6,6 +6,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    // "noImplicitAny": false,  make it less strict 
 
     /* Bundler mode */
     "moduleResolution": "bundler",

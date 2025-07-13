@@ -1,16 +1,19 @@
 
 import { Button } from './components/ui/Button'
+
 import './App.css'
+import { PlusIcon } from './icons/Plus'
 
 function App() {
  
 
   return (
     <>
-      <div className='bg-blue-800'>
-       <h1>hii</h1>
-      {/* <Button variant="primary" size="md" onClick={ ()=>{}} text={asd} startIcon={} endIcon={} /> */}
-        </div>
+     
+      <Button startIcon={<PlusIcon/>} size='sm' variant='primary' text='Share' />
+      <Button  size="lg"  variant='secondary' text='Add Content' />
+      
+     
     </>
   )
 }
