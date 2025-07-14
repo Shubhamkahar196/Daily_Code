@@ -42,38 +42,44 @@ export const login = async (req: Request, res: Response) => {
   try {
     const parseDataSuccess = loginSchema.safeParse(req.body);
     if (!parseDataSuccess.success) {
-      return res.status(400).json({
+       res.status(400).json({
         message: "Invalid request data",
         error: parseDataSuccess.error,
       });
+      return
     }
 
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      res.status(401).json({ message: "Invalid email or password" });
+      return
     }
 
     const passwordMatched = await bcrypt.compare(password, user.password);
     if (!passwordMatched) {
-      return res.status(401).json({ message: "Invalid email or password" });
+       res.status(401).json({ message: "Invalid email or password" });
+       return
     }
 
     if (!process.env.SECRET_KEY) {
-      return res.status(500).json({ message: "Internal server error" });
+       res.status(500).json({ message: "Internal server error" });
+       return
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
-    return res.status(200).json({
+     res.status(200).json({
       message: "User logged in successfully",
       token,
       userId: user._id,
     });
+    return
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Internal server error" });
+   res.status(500).json({ message: "Internal server error" });
+   return
   }
 };
 

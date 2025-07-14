@@ -40,11 +40,14 @@ export const newContent = async (req: AuthRequest, res: Response) => {
       tag,
       userId: userid,
     });
+
     await contentCreated.save();
     res.status(201).json({ message: "Content saved successfully" });
+    return
   } catch (err) {
     console.log("Err(catch): something went wrong", err);
     res.status(500).json({ message: "Internal server error" });
+    return
   }
 };
 
@@ -61,9 +64,11 @@ export const content = async (req: AuthRequest, res: Response) => {
       message: "User data fetched successfully",
       data: userData,
     });
+    return
   } catch (err) {
     console.log("Err(catch): something went wrong", err);
     res.status(500).json({ message: "Internal server error" });
+    return
   }
 };
 
@@ -89,6 +94,7 @@ export const deleteContent = async (req: AuthRequest, res: Response) => {
   } catch (err) {
     console.log("Err(catch): something went wrong", err);
     res.status(500).json({ message: "Internal server error" });
+    return
   }
 };
 
@@ -102,9 +108,11 @@ export const shareContent = async (req: AuthRequest, res: Response) => {
 
     const documents = await ContentModel.find({ userId });
     res.status(200).json({ data: documents });
+    return
   } catch (err) {
     console.log("Err(catch): something went wrong", err);
     res.status(500).json({ message: "Internal server error" });
+    return
   }
 };
 
