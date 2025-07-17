@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    
+    width: 100%;
+    height: 100%;
+}
+/* 
+#car1{
+    width: 100px;
+    height: 120px;
+    background-color: red;
+}
+#car2{
+    width: 110px;
+    height: 90px;
+    background-color: blueviolet;
+    position:absolute;
+     top: 20%;
+    left: 40%; 
+}
+#car3{
+    width: 130px;
+    height: 110px;
+    background-color: green
+} */
+
+/* understanding position - relative */
+
+/* 
+#box {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background-color: red;
+}
+
+#chhota{
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    position: absolute;
+    left: 40%;
+} */
+
+/* understanding flex box */
+
+#box{
+    display: flex;
+    justify-content: center;
+    
+     align-items: center;
+    width: 500px;
+    height: 500px;
+    background-color: gray;
+}
+
+#box1{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+#box2{
+    width: 100px;
+    height: 110px;
+    background-color: blue;
+}
+#box3{
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
