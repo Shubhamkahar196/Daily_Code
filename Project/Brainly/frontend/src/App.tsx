@@ -1,24 +1,26 @@
-import { useState } from 'react'
 
 import './App.css'
-import ButtonUI from './component/ButtonUI/Button'
-import PlusIcon from './component/icons/PlusIcon'
-import ShareIcon from './component/icons/ShareIcon'
+import HomePage from './pages/HomePage'
+import RegisterPage from './pages/RegisterPage'
+import SharedPage from './pages/SharedPage'
+
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  return <div>
 
-  return (
-    <div>
-      <ButtonUI variant={"primary"}
-        startIcon={<PlusIcon variantSize={"lg"} />} 
-        endIcon={<ShareIcon variantSize={"lg"} />} 
-        size="lg" 
-        title={"Share"}/>
-    </div>
-     
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path='/HomePage' element={<HomePage />} />
+        <Route path='/' element={<RegisterPage />} />
+        <Route path='/share/:id' element={<SharedPage />} />
+        <Route path="*" element={<Navigate to="/HomePage" />} />
+      </Routes>
+    </BrowserRouter> 
+  </div>
+  
 }
 
 export default App

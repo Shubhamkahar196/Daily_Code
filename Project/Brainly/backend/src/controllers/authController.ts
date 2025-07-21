@@ -38,7 +38,7 @@ export const signup = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const signin = async (req: Request, res: Response) => {
   try {
     const parseDataSuccess = loginSchema.safeParse(req.body);
     if (!parseDataSuccess.success) {
