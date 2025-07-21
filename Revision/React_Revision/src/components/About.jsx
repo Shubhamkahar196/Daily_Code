@@ -14,7 +14,7 @@ const About = () => {
           </button>
           </div>
 
-<div className='w-1/2 h-[70vh] bg-red-600'>
+<div className='w-1/2 h-[70vh] bg-red-600cmd'>
 
 </div>
 
