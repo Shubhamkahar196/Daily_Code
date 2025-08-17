@@ -5,6 +5,10 @@ export const createTodoSchema = z.object({
     content: z.string().optional(),
 });
 
-export const updateSchema = z.object({
-    completed: z.boolean().optional(),
-})
+
+
+export const updateTodoSchema = z.object({
+  title: z.string().optional(),
+  content: z.string().optional(),
+  completed: z.boolean().optional(),
+});

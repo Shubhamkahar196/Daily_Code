@@ -55,4 +55,55 @@ router.get("/getAll", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 }));
+// updating todo
+router.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { title, content, completed } = todoValidation_1.updateTodoSchema.parse(req.body);
+        const todoId = parseInt(req.params.id);
+        const userId = req.user.userId;
+        // ensure the todo belongs to the user
+        const existingTodo = yield Client.todo.findUnique({
+            where: { id: todoId }
+        });
+        if (!existingTodo || existingTodo.userId !== userId) {
+            return res.status(400).json({
+                error: "Todo not found or you don't have permission"
+            });
+        }
+        // validation the incoming data
+        const updateData = { title, content, completed };
+        const parsedUpdataData = todoValidation_1.updateTodoSchema.parse(updateData);
+        const updatedTodo = yield Client.todo.update({
+            where: { id: todoId },
+            data: parsedUpdataData
+        });
+        res.json(updateData);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to update todo" });
+    }
+}));
+// deleting todo
+router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const todoId = parseInt(req.params.id);
+        const userId = req.user.userId;
+        // Ensure the todo belongs to the user
+        const existingTodo = yield Client.todo.findUnique({
+            where: { id: todoId }
+        });
+        if (!existingTodo || existingTodo.userId !== userId) {
+            return res.status(404).json({ error: "Todo not found or you don't have permission" });
+        }
+        yield Client.todo.delete({
+            where: { id: todoId }
+        });
+        res.status(200).json({ message: "Todo deleted successfully." });
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to delete todo" });
+    }
+}));
 exports.default = router;

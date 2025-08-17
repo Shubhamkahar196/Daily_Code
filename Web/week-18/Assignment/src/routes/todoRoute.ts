@@ -1,7 +1,7 @@
 import {Router} from 'express'
 import { PrismaClient } from '@prisma/client';
 import { authenticateToken } from '../middleware/auth'
-import { createTodoSchema } from '../validation/todoValidation'
+import { createTodoSchema, updateTodoSchema } from '../validation/todoValidation'
 
 const router = Router();
 const Client = new PrismaClient();
@@ -52,5 +52,67 @@ router.get("/getAll",async(req,res)=>{
         })
     }
 })
+
+// updating todo
+
+router.put("/:id",async(req,res)=>{
+    try{
+        const {title, content, completed} = updateTodoSchema.parse(req.body);
+        const todoId = parseInt(req.params.id);
+        const userId = req.user.userId;
+
+        // ensure the todo belongs to the user
+        const existingTodo = await Client.todo.findUnique({
+            where: {id: todoId}
+        })
+
+        if(!existingTodo || existingTodo.userId !==userId){
+            return res.status(400).json({
+                error: "Todo not found or you don't have permission"
+            })
+        }
+
+        // validation the incoming data
+        const updateData = { title, content, completed};
+        const parsedUpdataData = updateTodoSchema.parse(updateData);
+
+        const updatedTodo = await Client.todo.update({
+            where: { id: todoId},
+            data: parsedUpdataData
+        })
+
+        res.json(updateData)
+    }catch(error){
+       console.error(error);
+            res.status(500).json({ error: "Failed to update todo" });
+    }
+
+})
+// deleting todo
+router.delete("/:id", async (req, res) => {
+    try {
+        const todoId = parseInt(req.params.id);
+        const userId = req.user.userId;
+
+        // Ensure the todo belongs to the user
+        const existingTodo = await Client.todo.findUnique({
+            where: { id: todoId }
+        });
+
+        if (!existingTodo || existingTodo.userId !== userId) {
+            return res.status(404).json({ error: "Todo not found or you don't have permission" });
+        }
+
+        await Client.todo.delete({
+            where: { id: todoId }
+        });
+
+          res.status(200).json({ message: "Todo deleted successfully." });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to delete todo" });
+    }
+});
+
 
 export default router;
