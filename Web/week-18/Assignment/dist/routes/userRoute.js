@@ -13,12 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const prisma_1 = require("../generated/prisma");
+const client_1 = require("@prisma/client");
 const userValidation_1 = require("../validation/userValidation");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const router = (0, express_1.Router)();
-const Client = new prisma_1.PrismaClient();
+const Client = new client_1.PrismaClient();
 const JWT_SECRET_Key = process.env.JWT_SECRET;
 if (!JWT_SECRET_Key) {
     throw new Error("JWT_SECRET is not defined");
@@ -26,26 +26,25 @@ if (!JWT_SECRET_Key) {
 router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = userValidation_1.signupSchema.parse(req.body);
+        // Check if email is already in use
         const existingUser = yield Client.user.findUnique({ where: { email } });
-        if (!existingUser) {
-            return res.status(409).json({
-                error: "User with this email already exists"
-            });
+        if (existingUser) {
+            return res.status(400).json({ error: "Email already in use" });
         }
-        // hashing password
+        // Hash password
         const hashedPassword = yield bcryptjs_1.default.hash(password, 10);
+        // Create new user
         const user = yield Client.user.create({
             data: { email, password: hashedPassword },
         });
         res.status(201).json({
             message: "User created Successfully",
-            user: { id: user.id, email: user.email }
+            user: { id: user.id, email: user.email },
         });
     }
     catch (error) {
-        res.status(400).json({
-            error: "Invalid input data"
-        });
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 }));
 // login route
@@ -57,7 +56,7 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         // checking user exist or not
         if (!user) {
             return res.status(404).json({
-                error: "User not found"
+                error: "User not found",
             });
         }
         // if user find then match the password of user
@@ -65,14 +64,17 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         // if password not matched
         if (!isPassword) {
             return res.status(401).json({
-                error: "Invalid credentials"
+                error: "Invalid credentials",
             });
         }
         // checking token
-        const token = jsonwebtoken_1.default.sign({ userId: user.id }, JWT_SECRET_Key, { expiresIn: '1h' });
+        const token = jsonwebtoken_1.default.sign({ userId: user.id }, JWT_SECRET_Key, {
+            expiresIn: "1h",
+        });
+        res.json({ token });
     }
     catch (error) {
-        res.status(400).json({ error: 'Invalid input data.' });
+        res.status(400).json({ error: "Invalid input data." });
     }
 }));
 exports.default = router;

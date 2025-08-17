@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const prisma_1 = require("../generated/prisma");
+const client_1 = require("@prisma/client");
 const auth_1 = require("../middleware/auth");
 const todoValidation_1 = require("../validation/todoValidation");
 const router = (0, express_1.Router)();
-const Client = new prisma_1.PrismaClient();
+const Client = new client_1.PrismaClient();
 // all routes in this router will use authentication middleware
 router.use(auth_1.authenticateToken);
 // create todo
