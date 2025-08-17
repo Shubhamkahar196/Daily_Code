@@ -1,20 +1,23 @@
-import { PrismaClient } from "./generated/prisma";
-import  express  from "express";
-const app = express();
-const Client = new PrismaClient();
 
-app.get("/getUser",async (req,res)=>{
-     try{
-      const allUser = await Client.user.findMany();
-      res.status(200).json({
-          allUser
-      })
-     }catch(error){
-       console.log(error);
-       res.status(500).json({
-          message: "Error fetching users"
-       })
-     }
+import  express  from "express";
+import userRoute from './routes/userRoute'
+import TodoRoute from './routes/todoRoute'
+import dotenv from 'dotenv'
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT;
+
+app.use(express.json());
+
+//Routes
+app.use('/api/v1/user',userRoute);
+app.use('/api/v1/todos',TodoRoute);
+
+app.listen(PORT,()=>{
+  console.log(`Server is running on http://localhost:${PORT}`);
 })
 
-app.
+
+
