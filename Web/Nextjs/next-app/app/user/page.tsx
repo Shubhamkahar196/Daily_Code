@@ -1,10 +1,8 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
    
    <div>
-    <h1>Hii shubham</h1>
+    <h1>Hii shubham user</h1>
    </div>
   );
 }
