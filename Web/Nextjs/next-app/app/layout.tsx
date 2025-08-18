@@ -27,6 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+           {/* just like nav need every page so add here to render all pages */}
+        {/* <div className="border-b-4">Quizio</div>    */}
+
         {children}
       </body>
     </html>
