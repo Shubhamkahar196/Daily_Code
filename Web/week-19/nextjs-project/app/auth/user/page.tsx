@@ -3,7 +3,8 @@
 import axios from "axios";
 
 export default async function User(){
-    const response = axios.get("https://week-13-offline.kirattechnologies.workers.dev/api/v1/user/details")
+    // const response = axios.get("https://week-13-offline.kirattechnologies.workers.dev/api/v1/user/details")
+    const response = axios.get("http://localhost:3000/api/v1/user/details")
 
     const data = (await response).data;
 
@@ -11,7 +12,7 @@ export default async function User(){
         <div className="flex justify-center">
             <div className="border p-8 rounded">
                 <div>
-                    Name: {data?.name}
+                     {data?.name}
                 </div>
                 
                 {data?.email}
