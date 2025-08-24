@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Signin(){
+export default function Signup(){
  const [username, setUsername] = useState("");
  const [password , setPassword] = useState("");
 
@@ -20,14 +20,36 @@ export default function Signin(){
 
          {/* after submitting signup redirect to signin */}
    
-            <button onClick={ async()=>{
-                         await  axios.post("http://localhost:3000/api/v1/signup",{
+            {/* <button onClick={ async()=>{
+                         await axios.post("http://localhost:3000/api/v1/signup",{
                             username,
                             password
                           })
 
                           router.push("/signin")
-            }}>Signup</button>
+            }}>Signup</button> */}
+
+              <button
+  onClick={async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/api/v1/signup", {
+        username,
+        password,
+      });
+      if (response.status === 200) {
+        router.push("/signin");
+      } else {
+        console.error("Error signing up:", response);
+      }
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
+  }}
+>
+  Signup
+</button>
+
+
         </div>
     </div>
 }
