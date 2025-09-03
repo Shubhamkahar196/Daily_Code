@@ -1,0 +1,9 @@
+{
+  // Fixed: Changed from "@repo/typescript-config/backend.json" to relative path to resolve extends error
+  "extends" : "../../packages/typescript-config/backend.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"]
+}

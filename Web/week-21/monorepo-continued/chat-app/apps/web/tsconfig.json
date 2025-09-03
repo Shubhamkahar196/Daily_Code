@@ -1,5 +1,6 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
+  // Fixed: Changed from "@repo/typescript-config/nextjs.json" to relative path to resolve extends error
+  "extends": "../../packages/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [
       {

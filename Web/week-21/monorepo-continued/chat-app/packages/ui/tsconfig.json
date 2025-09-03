@@ -1,5 +1,6 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  // Fixed: Changed from "@repo/typescript-config/react-library.json" to relative path to resolve extends error
+  "extends": "../../packages/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },
