@@ -10,7 +10,9 @@ Repository Structure
 This repository is organized into folders, each containing code for a specific assignment or project.
 
 -Web 3 & BlockChain
-- Web 
+- Web
+- devops
+  
 
 
 
