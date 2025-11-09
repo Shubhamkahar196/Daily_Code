@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK - Personal Portfolio</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Inter Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Configure Tailwind to use Inter font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Set smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+            /* Add top padding to account for the fixed header height */
+            /* 4rem (h-16) + 1px border = 65px. We'll use 70px. */
+            scroll-padding-top: 70px; 
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind's gray-50 */
+        }
+
+        /* --- CSS for Mobile Menu Toggle (No JavaScript) --- */
+        
+        /* Hide the checkbox itself */
+        #mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Show the mobile menu when the checkbox is checked */
+        #mobile-menu-toggle:checked ~ #mobile-menu {
+            display: block;
+        }
+
+        /* By default, show the hamburger icon and hide the close icon */
+        #mobile-menu-toggle-label .hamburger-icon {
+            display: block;
+        }
+        #mobile-menu-toggle-label .close-icon {
+            display: none;
+        }
+
+        /* When checked, hide the hamburger and show the close icon */
+        #mobile-menu-toggle:checked ~ nav #mobile-menu-toggle-label .hamburger-icon {
+            display: none;
+        }
+        #mobile-menu-toggle:checked ~ nav #mobile-menu-toggle-label .close-icon {
+            display: block;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 
+      HEADER / NAVIGATION BAR 
+      - Fixed to the top
+      - Becomes responsive on mobile (md breakpoint)
+    -->
+    <header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50 h-[70px]">
+        
+        <!-- Hidden checkbox to control the mobile menu -->
+        <input type="checkbox" id="mobile-menu-toggle">
+
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center h-full">
+            <!-- Brand Logo/Name -->
+            <a href="#home" class="text-2xl font-bold text-indigo-600">SK</a>
+            
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-indigo-600 transition duration-300">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 transition duration-300">About</a>
+                <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition duration-300">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Label (Hamburger/Close Icon) -->
+            <label id="mobile-menu-toggle-label" for="mobile-menu-toggle" class="md:hidden text-gray-700 focus:outline-none cursor-pointer">
+                <!-- Hamburger Icon -->
+                <svg class="w-6 h-6 hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+                <!-- Close Icon -->
+                <svg class="w-6 h-6 close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </label>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default, shown by checkbox) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute top-[70px] left-0 right-0">
+            <a href="#home" class="block px-6 py-3 text-gray-600 hover:bg-indigo-50 transition duration-300">Home</a>
+            <a href="#about" class="block px-6 py-3 text-gray-600 hover:bg-indigo-50 transition duration-300">About</a>
+            <a href="#contact" class="block px-6 py-3 text-gray-600 hover:bg-indigo-50 transition duration-300">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- 
+          HOME SECTION (HERO)
+          - Fills the viewport height
+          - Centered content
+        -->
+        <section id="home" class="min-h-screen flex items-center justify-center bg-white text-center px-6 pt-[70px]">
+            <div class="max-w-3xl">
+                <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-4">
+                    Hi, I'm <span class="text-indigo-600">SK</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8">
+                    A Passionate Web Developer Creating Modern & Responsive Web Applications.
+                </p>
+                <a href="#contact" class="bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    Get In Touch
+                </a>
+            </div>
+        </section>
+
+        <!-- 
+          ABOUT SECTION
+          - Two-column layout on desktop (image + text)
+          - Stacks on mobile
+        -->
+        <section id="about" class="min-h-screen bg-gray-50 py-20 px-6">
+            <div class="container mx-auto max-w-5xl">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">About Me</h2>
+                
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden md:flex items-center">
+                    <!-- Image Placeholder -->
+                    <div class="md:w-1/2">
+                        <!-- Replace this with your own image URL -->
+                        <img src="./github profile.png" alt="A portrait of YourName" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Text Content -->
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h3 class="text-3xl font-semibold text-gray-800 mb-4">Who Am I?</h3>
+                        <p class="text-gray-600 mb-6">
+                            Hello! I'm a [Your Role, e.g., "frontend developer", "UX designer"] based in [Your Location]. I have a deep passion for building clean, responsive, and user-friendly web experiences.
+                        </p>
+                        <p class="text-gray-600 mb-6">
+                            I thrive on turning complex problems into simple, beautiful, and intuitive designs. When I'm not coding, you can find me [Your Hobby, e.g., "hiking", "reading tech blogs", "experimenting with new recipes"].
+                        </p>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">My Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">HTML5</span>
+                            <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">CSS3</span>
+                            <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
+                            <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Tailwind CSS</span>
+                            <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">React</span>
+                            <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          CONTACT SECTION
+          - Simple, clean contact form
+        -->
+        <section id="contact" class="min-h-screen bg-white py-20 px-6">
+            <div class="container mx-auto max-w-3xl text-center">
+                <h2 class="text-4xl font-bold text-gray-900 mb-8">Contact Me</h2>
+                <p class="text-lg text-gray-600 mb-10">
+                    Have a project in mind or just want to say hi? My inbox is always open.
+                </p>
+                
+                <!-- Contact Form -->
+                <div class="bg-gray-50 p-8 md:p-12 rounded-xl shadow-xl w-full">
+                    <!-- 
+                      NOTE: This is a visual-only form. 
+                      To make it work, you need a backend or a service like Netlify Forms, Formspree, etc.
+                    -->
+                    <form action="#" method="POST">
+                        <div class="mb-6">
+                            <label for="name" class="block text-left text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-left text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-left text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:-translate-y-1">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+      FOOTER
+      - Simple, centered footer
+    -->
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2025 YourName. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
