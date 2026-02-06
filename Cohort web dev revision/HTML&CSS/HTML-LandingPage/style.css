@@ -1,0 +1,28 @@
+*{
+ padding: 0px;
+ margin: 0px;
+ background-color:white;
+ 
+}
+
+.head{
+    margin: 2px;
+   padding: 2px;
+}
+.nav{
+    display: flex;
+   justify-content: space-between;
+   margin-top: 5px;
+   padding: 5px 5px 5px 5px;
+   text-decoration: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.s1{
+    display: flex;
+    flex-direction: column;
+}
