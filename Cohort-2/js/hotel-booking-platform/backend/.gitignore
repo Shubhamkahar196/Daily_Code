@@ -77,3 +77,4 @@ ehthumbs.db
 *.js.map
 *.d.ts
 *.tsbuildinfo
+/src/generated/prisma
