@@ -43,6 +43,9 @@ app.get("/:id",(req,res)=>{
             error: "Todo not found"
         })
     }
+    res.json({
+        todo
+    })
 })
 
 app.put("/update/:id",(req,res)=>{
