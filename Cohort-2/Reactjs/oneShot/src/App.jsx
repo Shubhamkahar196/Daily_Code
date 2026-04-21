@@ -1,14 +1,19 @@
-import Header from "./components/Header"
 
+
+import ColorPicker from "./components/ColorPicker"
 
 function App() {
 
 
   return (
-    
-      <Header/>
+   <>
+<ColorPicker/>
+   </>
+      
     
   )
 }
+
+
 
 export default App
